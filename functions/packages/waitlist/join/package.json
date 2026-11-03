@@ -1,0 +1,7 @@
+{
+  "name": "everloyal-waitlist-join",
+  "private": true,
+  "description": "Built from functions/src/join.ts by `bun run build:functions`. Do not edit index.js by hand.",
+  "type": "commonjs",
+  "main": "index.js"
+}

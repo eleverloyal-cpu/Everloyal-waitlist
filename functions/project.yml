@@ -1,0 +1,34 @@
+# DigitalOcean Functions project for the EverLoyal waitlist.
+# Deploy:  bun run deploy:functions   (builds src/ → packages/, then `doctl serverless deploy functions`)
+# Values below come from functions/.env (see .env.example) or App Platform env vars.
+environment:
+  SUPABASE_URL: "${SUPABASE_URL}"
+  SUPABASE_SECRET_KEY: "${SUPABASE_SECRET_KEY}"
+  ALLOWED_ORIGINS: "${ALLOWED_ORIGINS}"
+  # Private data page (/admin). Checked only on the server; never use VITE_ for these.
+  ADMIN_USERNAME: "${ADMIN_USERNAME}"
+  ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
+  ADMIN_SESSION_SECRET: "${ADMIN_SESSION_SECRET}"
+
+packages:
+  - name: waitlist
+    functions:
+      - name: join
+        runtime: "nodejs:22"
+        # raw: we read the body ourselves, so the browser can send text/plain (no CORS preflight)
+        web: raw
+        annotations:
+          # we answer OPTIONS ourselves so CORS headers match ALLOWED_ORIGINS exactly
+          web-custom-options: true
+        limits:
+          timeout: 10000 # ms; the Supabase call gives up at 6s
+          memory: 256 # MB
+      - name: admin
+        runtime: "nodejs:22"
+        # raw + custom OPTIONS, same as join: the browser sends text/plain JSON
+        web: raw
+        annotations:
+          web-custom-options: true
+        limits:
+          timeout: 15000 # ms; each call reads one page of up to 500 sign-ups
+          memory: 256 # MB

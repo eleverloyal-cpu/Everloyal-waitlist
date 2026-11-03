@@ -1,0 +1,225 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+:root {
+  --el-blue: oklch(0.42 0.17 272);
+  --el-blue-deep: oklch(0.3 0.13 272);
+  --el-lime: oklch(0.88 0.2 128);
+  --el-orange: oklch(0.74 0.17 52);
+  --el-cream: oklch(0.97 0.025 85);
+  --el-pass: oklch(0.985 0.018 85);
+  --el-pass-shadow: 0 12px 48px color-mix(in oklab, var(--el-blue) 7%, transparent);
+  --el-ink: oklch(0.24 0.06 272);
+}
+@theme inline {
+  --color-el-blue: var(--el-blue);
+  --color-el-blue-deep: var(--el-blue-deep);
+  --color-el-lime: var(--el-lime);
+  --color-el-orange: var(--el-orange);
+  --color-el-cream: var(--el-cream);
+  --color-el-pass: var(--el-pass);
+  --color-el-ink: var(--el-ink);
+  --font-display: "Fredoka", "Nunito", system-ui, sans-serif;
+  --font-sans: "Nunito", system-ui, sans-serif;
+}
+html, body { overflow-x: hidden; }
+body { font-family: var(--font-sans); background: var(--el-cream); color: var(--el-ink); }
+@keyframes el-float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+@keyframes el-pop { 0% { transform: scale(.6); opacity: 0 } 70% { transform: scale(1.06) } 100% { transform: scale(1); opacity: 1 } }
+@keyframes el-bar { from { width: 0 } to { width: 100% } }
+@keyframes el-wiggle { 0%,100% { transform: rotate(0) } 25% { transform: rotate(-8deg) } 75% { transform: rotate(8deg) } }
+@keyframes el-recoil { 0% { transform: translateY(0) } 30% { transform: translateY(5px) } 60% { transform: translateY(-3px) } 100% { transform: translateY(0) } }
+@keyframes el-drop { 0% { transform: translate(-50%, 0); opacity: 1 } 80% { transform: translate(-50%, 7.5rem); opacity: 1 } 100% { transform: translate(-50%, 8rem) scale(.7); opacity: 0 } }
+@keyframes el-spark { 0% { transform: translateY(0) scale(.4); opacity: 0 } 30% { opacity: 1 } 100% { transform: translateY(-2.2rem) scale(1.1); opacity: 0 } }
+.el-recoil { animation: el-recoil .6s ease-out; }
+.el-drop { animation: el-drop .55s cubic-bezier(.5,0,.8,.4) both; }
+.el-spark { animation: el-spark .7s ease-out both; }
+.el-float { animation: el-float 3s ease-in-out infinite; }
+.el-pop { animation: el-pop .45s cubic-bezier(.3,1.4,.5,1) both; }
+/* Join success moment (tick, ripples, paw burst, text rise). Reduced motion: the global rule below jumps each to its end state. */
+@keyframes el-fade-in { from { opacity: 0 } to { opacity: 1 } }
+@keyframes el-draw { to { stroke-dashoffset: 0 } }
+@keyframes el-ripple { 0% { transform: scale(1); opacity: .7 } 100% { transform: scale(1.9); opacity: 0 } }
+@keyframes el-burst {
+  0% { transform: translate(-50%, -50%) scale(.4) rotate(var(--r)); opacity: 0 }
+  25% { opacity: 1 }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1) rotate(var(--r)); opacity: 0 }
+}
+@keyframes el-rise { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+.el-fade-in { animation: el-fade-in .18s ease-out both; }
+.el-tick { stroke-dasharray: 80; stroke-dashoffset: 80; animation: el-draw .32s ease-out .42s forwards; }
+.el-ripple { opacity: 0; animation: el-ripple .9s ease-out .5s; }
+.el-paw-burst { opacity: 0; animation: el-burst .85s ease-out .55s forwards; }
+.el-rise { animation: el-rise .35s ease-out both; }
+/* Hand-off to /welcome: the success words fade, a matching deep-blue curtain lifts off the
+   welcome page and the panel's parts rise in turn (--i). The curtain rests at opacity 0, so it
+   can never block the page if animations don't run. */
+@keyframes el-leave { to { opacity: 0; transform: scale(.96) } }
+@keyframes el-curtain { from { opacity: 1 } to { opacity: 0 } }
+@keyframes el-enter { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+.el-leave { animation: el-leave .3s cubic-bezier(.4,0,1,1) forwards; }
+.el-curtain { opacity: 0; animation: el-curtain .6s cubic-bezier(.33,0,.2,1) .05s both; }
+.el-enter { animation: el-enter .65s cubic-bezier(.22,1,.36,1) both; animation-delay: calc(var(--i, 0) * 75ms + 140ms); }
+@media (prefers-reduced-motion: reduce) { .el-enter, .el-curtain { animation-delay: 0s !important; } }
+@keyframes el-coming { 0%,100% { transform: rotate(-2deg) scale(1) } 50% { transform: rotate(2deg) scale(1.06) } }
+.el-coming { animation: el-coming 2.4s ease-in-out infinite; }
+.el-paw { animation: el-wiggle 1.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .el-coming, .el-paw { animation: none; } }
+.el-wiggle { animation: el-wiggle .5s ease-in-out 2; }
+@keyframes el-marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+.el-marquee { animation: el-marquee 22s linear infinite; }
+.el-marquee-wrap:hover .el-marquee { animation-play-state: paused; }
+.el-blobs { background: var(--el-blue); }
+.founding-pass { box-shadow: var(--el-pass-shadow); border-top: 3px solid var(--el-orange); }
+/* Hero video band: fade the media itself (eased) instead of painting a colour over it, so the
+   band blends into the real page background at every width. Mask uses alpha only. */
+.el-hero-fade {
+  -webkit-mask-image: linear-gradient(to bottom, var(--el-ink) 0%, var(--el-ink) 56%, color-mix(in oklab, var(--el-ink) 80%, transparent) 70%, color-mix(in oklab, var(--el-ink) 45%, transparent) 82%, color-mix(in oklab, var(--el-ink) 15%, transparent) 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, var(--el-ink) 0%, var(--el-ink) 56%, color-mix(in oklab, var(--el-ink) 80%, transparent) 70%, color-mix(in oklab, var(--el-ink) 45%, transparent) 82%, color-mix(in oklab, var(--el-ink) 15%, transparent) 92%, transparent 100%);
+}
+.mascot-greeting-media {
+  mask-image: radial-gradient(ellipse at center, var(--el-ink) 48%, transparent 73%);
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }

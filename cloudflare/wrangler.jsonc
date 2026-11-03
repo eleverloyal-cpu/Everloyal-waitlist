@@ -1,0 +1,30 @@
+// Cloudflare Workers config for everloyal.pet. Deploy with `bun run deploy` (scripts/deploy-cloudflare.mjs).
+// Kept out of the project root on purpose: the Lovable build (nitro) reads a root wrangler file.
+// Paths below are relative to this folder.
+{
+  "name": "everloyal",
+  "main": "../functions/src/worker.ts",
+  "compatibility_date": "2026-10-29",
+  // node:crypto + Buffer for the admin login
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    // Pre-rendered pages, scripts and media: served free, without running the Worker
+    "directory": "../.output/public",
+    "run_worker_first": ["/api/*"],
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "single-page-application",
+  },
+  // The live addresses. Each deploy connects them (DNS record + HTTPS certificate). The zone
+  // must not have other A/AAAA/CNAME records on these names (see DEPLOY.md step 5).
+  "routes": [
+    { "pattern": "everloyal.pet", "custom_domain": true },
+    { "pattern": "www.everloyal.pet", "custom_domain": true },
+  ],
+  // Keep the everloyal.everloyal.workers.dev test address too
+  "workers_dev": true,
+  // Daily read-only ping (03:00 IST) so the free Supabase project never pauses
+  "triggers": { "crons": ["30 21 * * *"] },
+  "observability": { "enabled": true },
+  // Secrets (SUPABASE_URL, SUPABASE_SECRET_KEY, ALLOWED_ORIGINS, ADMIN_*) are set with
+  // `bun run deploy:secrets`, never written here.
+}
